@@ -1,11 +1,18 @@
 Forked to include pre and post processing to enable registration of paired abdominal T1 and T2 MRI. Both of these modlaities are differently anisotropic in my dataset of interest. These modifications in the repo allow for deeds deformably registered moving image to align with the unaltered anisotropic fixed image.
 
+The deeds registered image at the original fixed image resolution is this:
+moving_deeds_nonlinear_resampled_to_fixed_original_resolution.nii.gz
+
+
 Run this bash script on the MASI network to register:
 reorient_to_LAS_resample_to_isotropic_deeds_registration_and_resample_back_to_fixed_anisotropic.sh
 
 If fixed image is not in LAS (according to FSL and nibabel) or RPI (according to c3d), then i don't believe the final registered moving image that gets resampled to original fixed image resolution will make sense.
 
 Command line arguments should be obvious at the top of the script
+
+A test case has been given in test.sh
+
 
 
 
