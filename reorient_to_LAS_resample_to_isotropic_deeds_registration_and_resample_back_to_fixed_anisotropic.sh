@@ -17,7 +17,7 @@ echo output directory: $outdir
 echo
 
 # MASI paths to installations of c3d and 3dresample. These are accessible to anything on the MASI network
-c3d="/home/local/VANDERBILT/krishar1/c3d-1.0.0-Linux-x86_64/bin/c3d"
+c3d="/home-nfs2/local/VANDERBILT/remedilw/programs/c3d-1.0.0-Linux-x86_64/bin/c3d"
 reorient="/home-nfs2/local/VANDERBILT/remedis/3dresample"
 
 
@@ -45,8 +45,8 @@ $reorient -orient RPI -inset $moving -prefix "$outdir/moving_reoriented.nii.gz"
 
 # Show orientation after correction
 echo "Fixed and Moving image orientations after correction:"
-$c3d "$outdir/fixed_reoriented.nii.gz -info"
-$c3d "$outdir/moving_reoriented.nii.gz -info"
+$c3d "$outdir/fixed_reoriented.nii.gz" -info
+$c3d "$outdir/moving_reoriented.nii.gz" -info
 echo
 
 # resample FIXED with c3d without changing the origin
@@ -57,9 +57,9 @@ mrgrid "$outdir/moving_reoriented.nii.gz" regrid -template "$outdir/fixed_reorie
 
 #=================================================
 # Deeds deformable registration
-linear="linearBCV"
+linear="./linearBCV"
 
-deeds="deedsBCV"
+deeds="./deedsBCV"
 
 
 # Linear Registration to initialize deeds
@@ -72,7 +72,7 @@ $deeds -F "$outdir/fixed_reoriented_resampled.nii.gz" -M "$outdir/moving_reorien
 
 # resample the deeds deformably registered isotropic moving image back to the original anisotropic fixed image
 # Because the moving image in this command has been forced into LAS, if the original fixed image is not LAS, this amy cause problems.
-mrgrid "$outdir/deeds_nonlinear_isotropic_deformed.nii.gz" regrid -template $fixed "$outdir/moving_deeds_nonlinear_resampled_to_fixed_original_resolution.nii.gz 
+mrgrid "$outdir/deeds_nonlinear_isotropic_deformed.nii.gz" regrid -template $fixed "$outdir/moving_deeds_nonlinear_resampled_to_fixed_original_resolution.nii.gz" 
 
 
 
