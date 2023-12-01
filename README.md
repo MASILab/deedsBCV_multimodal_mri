@@ -1,4 +1,4 @@
-Forked to include pre and post processing to enable registration of abdominal T1 and T2 MRI. Both of these modlaities are differently anisotropic. These modifications allow for deeds deformably registered moving image to align with the unaltered anisotropic fixed image.
+Forked to include pre and post processing to enable registration of paired abdominal T1 and T2 MRI. Both of these modlaities are differently anisotropic in my dataset of interest. These modifications in the repo allow for deeds deformably registered moving image to align with the unaltered anisotropic fixed image.
 
 
 
