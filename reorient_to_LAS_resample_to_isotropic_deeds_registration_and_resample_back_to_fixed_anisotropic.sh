@@ -19,6 +19,13 @@ echo
 # MASI paths to installations of c3d and 3dresample. These are accessible to anything on the MASI network
 c3d="/home-nfs2/local/VANDERBILT/remedilw/programs/c3d-1.0.0-Linux-x86_64/bin/c3d"
 reorient="/home-nfs2/local/VANDERBILT/remedis/3dresample"
+Warp="/home-nfs2/local/VANDERBILT/remedis/abin/3dWarp"
+#fslreorient2std="/home/local/VANDERBILT/caily/Apps/fsl/fsl_v6.0.4/bin/fslreorient2std"
+
+FSLDIR=/home/local/VANDERBILT/caily/Apps/fsl/fsl_v6.0.4
+. ${FSLDIR}/etc/fslconf/fsl.sh
+PATH=${FSLDIR}/bin:${PATH}
+export FSLDIR PATH
 
 
 
@@ -32,16 +39,32 @@ else
 fi
 
 
+# Deoblique the data if necessary:
+#echo "De-obliquing data if necesary"
+#$Warp -deoblique -prefix "$outdir/fixed_deoblique.nii.gz" $fixed
+#$Warp -deoblique -prefix "$outdir/moving_deoblique.nii.gz" $moving
+#fslreorient2std $fixed "$outdir/fixed_deoblique.nii.gz"
+#fslreorient2std $moving "$outdir/moving_deoblique.nii.gz"
+#echo
+#echo
+
+#fixed="$outdir/fixed_oblique.nii.gz"
+#moving="$outdir/moving_oblique.nii.gz"
+
+
 # Show orientation before correction
 echo "Fixed and Moving image orientations before correction:"
 $c3d $fixed -info
 $c3d $moving -info
+echo
 echo
 
 #reorient to LAS(in FSL / nibabel convention) (this command uses the opposite convention that's why RPI)
 echo Reorienting both fixed and moving image to LAS
 $reorient -orient RPI -inset $fixed -prefix "$outdir/fixed_reoriented.nii.gz"
 $reorient -orient RPI -inset $moving -prefix "$outdir/moving_reoriented.nii.gz"
+echo
+echo
 
 # Show orientation after correction
 echo "Fixed and Moving image orientations after correction:"
