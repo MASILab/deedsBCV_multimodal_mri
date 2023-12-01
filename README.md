@@ -1,3 +1,14 @@
+Forked to include pre and post processing to enable registration of abdominal T1 and T2 MRI. Both of these modlaities are differently anisotropic. These modifications allow for deeds deformably registered moving image to align with the unaltered anisotropic fixed image.
+
+
+
+
+
+
+
+
+
+
 # deedsBCV
 Code for efficient 3D discrete deformable registration for medical images
 
