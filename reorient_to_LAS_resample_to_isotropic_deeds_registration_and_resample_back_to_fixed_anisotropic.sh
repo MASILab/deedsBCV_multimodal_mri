@@ -57,9 +57,9 @@ mrgrid "$outdir/moving_reoriented.nii.gz" regrid -template "$outdir/fixed_reorie
 
 #=================================================
 # Deeds deformable registration
-linear="./linearBCV"
+linear="/nfs/masi/remedilw/deedsBCV_multimodal_mri/linearBCV"
 
-deeds="./deedsBCV"
+deeds="/nfs/masi/remedilw/deedsBCV_multimodal_mri/deedsBCV"
 
 
 # Linear Registration to initialize deeds
