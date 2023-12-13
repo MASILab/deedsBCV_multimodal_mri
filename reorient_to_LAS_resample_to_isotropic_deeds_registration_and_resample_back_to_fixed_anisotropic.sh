@@ -61,8 +61,10 @@ echo
 
 #reorient to LAS(in FSL / nibabel convention) (this command uses the opposite convention that's why RPI)
 echo Reorienting both fixed and moving image to LAS
-$reorient -orient RPI -inset $fixed -prefix "$outdir/fixed_reoriented.nii.gz"
-$reorient -orient RPI -inset $moving -prefix "$outdir/moving_reoriented.nii.gz"
+mrconvert $fixed "$outdir/fixed_reoriented.nii.gz" -strides -1,2,3 -force
+mrconvert $moving "$outdir/moving_reoriented.nii.gz" -strides -1,2,3 -force
+#$reorient -orient RPI -inset $fixed -prefix "$outdir/fixed_reoriented.nii.gz"
+#$reorient -orient RPI -inset $moving -prefix "$outdir/moving_reoriented.nii.gz"
 echo
 echo
 
